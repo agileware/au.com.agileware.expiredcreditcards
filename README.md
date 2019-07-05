@@ -1,15 +1,21 @@
 # au.com.agileware.expiredcreditcards
 
-![Screenshot](/images/screenshot.png)
+Notify the user when their credit card details are about to expire and provide a method for them to easily update credit card details and use those details for future recurring Contributions (token).
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+## Before
+Credit card details expire, token based payments simply stop working.
+Users have no way of updating their credit card details on the website and keeping the recurring Contribution current.
+
+## After
+Users and organisation are notified about upcoming credit card expiry.
+User are sent a link to a page where they can securely update their credit card details.
+Token used by CiviCRM is updated and recurring Contributions continue using the existing schedule.
+
+## Implementation
+This functionality should be implemented as a new type of Scheduled Reminder event trigger and new tokens for inclusion in the email template.  
+
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
-
-## Requirements
-
-* PHP v5.4+
-* CiviCRM (*FIXME: Version number*)
 
 ## Installation (Web UI)
 
@@ -37,8 +43,6 @@ cv en expiredcreditcards
 
 ## Usage
 
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
+Apply this [patch](https://bitbucket.org/agileware/au.com.agileware.expiredcreditcards/src/master/civicrm-core-mail-tokens.patch) for the schedule task.
 
-## Known Issues
 
-(* FIXME *)
