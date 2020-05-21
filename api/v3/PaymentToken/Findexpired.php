@@ -23,35 +23,54 @@ function _civicrm_api3_payment_token_Findexpired_spec(&$spec) {
  * @throws API_Exception
  */
 function civicrm_api3_payment_token_Findexpired($params) {
-  $today = new DateTime();
-  $today->setTime(0, 0, 0);
-
-  $expiredCreditCards = civicrm_api3('ContributionRecur', 'get', [
-    'sequential'                   => 1,
-    'return'                       => ["id", "contact_id"],
-    'payment_token_id.expiry_date' => ['<' => $today->format("Y-m-d H:i:s")],
-    'contribution_status_id'       => ['IN' => ["Pending", "In Progress", "Failed"]],
+  $expiredCreditCards = civicrm_api3('PaymentToken', 'get', [
+    'sequential' => 1,
+    'options' => ['limit' => 0]
   ]);
-
   $expiredCreditCards = $expiredCreditCards['values'];
 
   foreach ($expiredCreditCards as $expiredCreditCard) {
-    $today = new DateTime();
-    civicrm_api3('Activity', 'create', [
-      'source_contact_id'  => $expiredCreditCard['contact_id'],
-      'activity_type_id'   => "Credit Card Expired",
-      'source_record_id'   => $expiredCreditCard['id'],
-      'activity_date_time' => $today->format('Y-m-d H:i:s'),
-      'priority_id'        => "Urgent",
-      'subject'            => "Credit card expired for recurring contribution (ID : " . $expiredCreditCard['id'] . ')',
-      'status_id'          => "Completed",
-      'target_id'          => $expiredCreditCard['contact_id'],
-    ]);
+    $activity = civicrm_api3('Activity',
+      'get',
+      [
+        'source_contact_id' => $expiredCreditCard['contact_id'],
+        'activity_type_id'  => "Credit Card Expired",
+        'source_record_id'  => $expiredCreditCard['id'],
+      ]);
+    $expiredDate = new DateTime($expiredCreditCard['expiry_date']);
+    $expiredDate->modify('first day of next month');
+    $expiredDate->setTime(0, 0, 0);
+    $expiredDate = $expiredDate->format('Y-m-d H:i:s');
+    if (!$activity['count']) {
+      $activity = civicrm_api3('Activity',
+        'create',
+        [
+          'source_contact_id'   => $expiredCreditCard['contact_id'],
+          'activity_type_id'    => "Credit Card Expired",
+          'source_record_id'    => $expiredCreditCard['id'],
+          'activity_date_time'  => $expiredDate,
+          'priority_id'         => "Urgent",
+          'is_test'             => 0,
+          'is_deleted'          => 0,
+          'is_star'             => 0,
+          'is_current_revision' => 1,
+          'subject'             => "Credit card expired for recurring card token (ID : "
+                                   . $expiredCreditCard['id'] . ')',
+          'status_id'           => "Scheduled",
+          'target_id'           => $expiredCreditCard['contact_id'],
+        ]);
+    }
+    $activity = array_shift($activity['values']);
+    // update the date if not matched
+    if ($activity['activity_date_time'] != $expiredDate) {
+      $activity['activity_date_time'] = $expiredDate;
+      civicrm_api3('Activity', 'create', $activity);
+    }
   }
 
-  $response = array(
+  $response = [
     'expired' => count($expiredCreditCards),
-  );
+  ];
 
   return civicrm_api3_create_success($response, $params, 'PaymentToken', 'Findexpired');
 }
