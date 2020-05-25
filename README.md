@@ -1,6 +1,8 @@
 # au.com.agileware.expiredcreditcards
 
-Notify the user when their credit card details are about to expire and provide a method for them to easily update credit card details and use those details for future recurring Contributions (token).
+Extension that automatically creates a new Activity, Credit Card Expired based on the Credit Card Expiry Date for a stored credit card token.
+The Activity Date for the Activity is set to the 1st day of the month after the Credit Card Expiry Date.
+The Credit Card Expired, Activity can then be used to set up Scheduled Reminders to notify the Contact that their credit card is about to expire or has expired.
 
 ## Before
 Credit card details expire, token based payments simply stop working.
