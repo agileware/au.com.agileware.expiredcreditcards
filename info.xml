@@ -2,7 +2,7 @@
 <extension key="au.com.agileware.expiredcreditcards" type="module">
   <file>expiredcreditcards</file>
   <name>Expired Credit Cards</name>
-  <description>This extension checks expired credit cards of the user.</description>
+  <description>Extension that automatically creates a new Activity, Credit Card Expired based on the Credit Card Expiry Date for a stored credit card token. The Activity Date for the Activity is set to the 1st day of the month after the Credit Card Expiry Date. The Credit Card Expired, Activity can then be used to set up Scheduled Reminders to notify the Contact that their credit card is about to expire or has expired.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Agileware</author>
@@ -14,8 +14,8 @@
     <url desc="Support">https://agileware.com.au/contact</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2019-04-29</releaseDate>
-  <version>1.0</version>
+  <releaseDate>2020-05-25</releaseDate>
+  <version>1.1</version>
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
