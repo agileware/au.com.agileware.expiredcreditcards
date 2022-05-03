@@ -96,7 +96,7 @@ function expiredcreditcards_civicrm_managed(&$entities) {
       'description' => 'Check all recurring contributions and find attached payment tokens with expired credit cards.',
       'api_entity' => 'PaymentToken',
       'api_action' => 'findexpired',
-      'parameters' => "",
+      'parameters' => '',
       'is_active' => '1',
     ),
   );
@@ -107,9 +107,10 @@ function expiredcreditcards_civicrm_managed(&$entities) {
     'update' => 'never',
     'params' => array(
       'version' => 3,
-      'option_group_id' => "activity_type",
-      'label' => "Credit Card Expired",
-      'description' => "Credit card expired to process recurring contribution",
+      'option_group_id' => 'activity_type',
+      'label' => 'Credit Card Expired',
+      'name' => 'Credit_Card_Expired',
+      'description' => 'Credit card expired to process recurring contribution',
       'is_reserved' => 1,
     ),
   );
@@ -168,7 +169,7 @@ function expiredcreditcards_civicrm_entityTypes(&$entityTypes) {
  */
 function expiredcreditcards_civicrm_tokens(&$tokens) {
   $tokens['activity'] = array(
-    'activity.source_record' => ts("Activity Source Record"),
+    'activity.source_record' => ts('Activity Source Record'),
   );
 }
 
@@ -177,11 +178,11 @@ function expiredcreditcards_civicrm_tokens(&$tokens) {
  */
 function expiredcreditcards_civicrm_tokenValues(&$values, $cids, $job = NULL, $tokens = array(), $context = NULL) {
   if (!is_array($cids)) {
-    $values['activity.source_record'] = "[activitySourceRecord]";
+    $values['activity.source_record'] = '[activitySourceRecord]';
   }
   else {
     foreach ($cids as $cid) {
-      $values[$cid]['activity.source_record'] = "[activitySourceRecord]";
+      $values[$cid]['activity.source_record'] = '[activitySourceRecord]';
     }
   }
 }
@@ -201,9 +202,9 @@ function expiredcreditcards_civicrm_alterMailParams(&$params, $context) {
 
         $sourceRecordId = $activity['source_record_id'];
 
-        $params['html'] = str_replace("[activitySourceRecord]", $sourceRecordId, $params['html']);
-        $params['subject'] = str_replace("[activitySourceRecord]", $sourceRecordId, $params['subject']);
-        $params['text'] = str_replace("[activitySourceRecord]", $sourceRecordId, $params['text']);
+        $params['html'] = str_replace('[activitySourceRecord]', $sourceRecordId, $params['html']);
+        $params['subject'] = str_replace('[activitySourceRecord]', $sourceRecordId, $params['subject']);
+        $params['text'] = str_replace('[activitySourceRecord]', $sourceRecordId, $params['text']);
 
       }
       catch (CiviCRM_API3_Exception $e) {

@@ -34,7 +34,7 @@ function civicrm_api3_payment_token_Findexpired($params) {
       'get',
       [
         'source_contact_id' => $expiredCreditCard['contact_id'],
-        'activity_type_id'  => "Credit Card Expired",
+        'activity_type_id'  => 'Credit_Card_Expired',
         'source_record_id'  => $expiredCreditCard['id'],
       ]);
     $expiredDate = new DateTime($expiredCreditCard['expiry_date']);
@@ -46,17 +46,17 @@ function civicrm_api3_payment_token_Findexpired($params) {
         'create',
         [
           'source_contact_id'   => $expiredCreditCard['contact_id'],
-          'activity_type_id'    => "Credit Card Expired",
+          'activity_type_id'    => 'Credit_Card_Expired',
           'source_record_id'    => $expiredCreditCard['id'],
           'activity_date_time'  => $expiredDate,
-          'priority_id'         => "Urgent",
+          'priority_id'         => 'Urgent',
           'is_test'             => 0,
           'is_deleted'          => 0,
           'is_star'             => 0,
           'is_current_revision' => 1,
-          'subject'             => "Credit card expired for recurring card token (ID : "
+          'subject'             => 'Credit card expired for recurring card token (ID : '
                                    . $expiredCreditCard['id'] . ')',
-          'status_id'           => "Scheduled",
+          'status_id'           => 'Scheduled',
           'target_id'           => $expiredCreditCard['contact_id'],
         ]);
     }
