@@ -13,15 +13,6 @@ function expiredcreditcards_civicrm_config(&$config) {
 }
 
 /**
- * Implements hook_civicrm_xmlMenu().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
- */
-function expiredcreditcards_civicrm_xmlMenu(&$files) {
-  _expiredcreditcards_civix_civicrm_xmlMenu($files);
-}
-
-/**
  * Implements hook_civicrm_install().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_install
@@ -114,43 +105,6 @@ function expiredcreditcards_civicrm_managed(&$entities) {
       'is_reserved' => 1,
     ),
   );
-  _expiredcreditcards_civix_civicrm_managed($entities);
-}
-
-/**
- * Implements hook_civicrm_caseTypes().
- *
- * Generate a list of case-types.
- *
- * Note: This hook only runs in CiviCRM 4.4+.
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
- */
-function expiredcreditcards_civicrm_caseTypes(&$caseTypes) {
-  _expiredcreditcards_civix_civicrm_caseTypes($caseTypes);
-}
-
-/**
- * Implements hook_civicrm_angularModules().
- *
- * Generate a list of Angular modules.
- *
- * Note: This hook only runs in CiviCRM 4.5+. It may
- * use features only available in v4.6+.
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_angularModules
- */
-function expiredcreditcards_civicrm_angularModules(&$angularModules) {
-  _expiredcreditcards_civix_civicrm_angularModules($angularModules);
-}
-
-/**
- * Implements hook_civicrm_alterSettingsFolders().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_alterSettingsFolders
- */
-function expiredcreditcards_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _expiredcreditcards_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
