@@ -4,7 +4,7 @@ use CRM_Expiredcreditcards_ExtensionUtil as E;
 /**
  * Collection of upgrade steps.
  */
-class CRM_Expiredcreditcards_Upgrader extends CRM_Expiredcreditcards_Upgrader_Base {
+class CRM_Expiredcreditcards_Upgrader extends CRM_Extension_Upgrader_Base {
 
   /**
    * Update 100 function
