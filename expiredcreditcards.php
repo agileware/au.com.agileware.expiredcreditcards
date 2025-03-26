@@ -22,48 +22,12 @@ function expiredcreditcards_civicrm_install() {
 }
 
 /**
- * Implements hook_civicrm_postInstall().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_postInstall
- */
-function expiredcreditcards_civicrm_postInstall() {
-  _expiredcreditcards_civix_civicrm_postInstall();
-}
-
-/**
- * Implements hook_civicrm_uninstall().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
- */
-function expiredcreditcards_civicrm_uninstall() {
-  _expiredcreditcards_civix_civicrm_uninstall();
-}
-
-/**
  * Implements hook_civicrm_enable().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
 function expiredcreditcards_civicrm_enable() {
   _expiredcreditcards_civix_civicrm_enable();
-}
-
-/**
- * Implements hook_civicrm_disable().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
- */
-function expiredcreditcards_civicrm_disable() {
-  _expiredcreditcards_civix_civicrm_disable();
-}
-
-/**
- * Implements hook_civicrm_upgrade().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
- */
-function expiredcreditcards_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _expiredcreditcards_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -105,17 +69,6 @@ function expiredcreditcards_civicrm_managed(&$entities) {
       'is_reserved' => 1,
     ),
   );
-}
-
-/**
- * Implements hook_civicrm_entityTypes().
- *
- * Declare entity types provided by this module.
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_entityTypes
- */
-function expiredcreditcards_civicrm_entityTypes(&$entityTypes) {
-  _expiredcreditcards_civix_civicrm_entityTypes($entityTypes);
 }
 
 /**
