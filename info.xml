@@ -18,15 +18,18 @@
   <version>1.4.2</version>
   <develStage>stable</develStage>
   <compatibility>
-    <ver>5.38</ver>
+    <ver>5.51</ver>
   </compatibility>
   <civix>
     <namespace>CRM/Expiredcreditcards</namespace>
-    <format>25.01.1</format>
+    <format>25.10.2</format>
   </civix>
   <classloader>
     <psr0 prefix="CRM_" path="."/>
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
   <upgrader>CiviMix\Schema\Expiredcreditcards\AutomaticUpgrader</upgrader>
+  <mixins>
+    <mixin>scan-classes@1.0.0</mixin>
+  </mixins>
 </extension>
